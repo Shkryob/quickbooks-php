@@ -275,7 +275,7 @@ if (!QuickBooks_Utilities::initialized($dsn))
 	//	method and return a qbXML request. So, your request handler for adding 
 	//	customers might do something like this: 
 	// 
-	//	$arr = mysql_fetch_array(mysql_query("SELECT * FROM my_customer_table WHERE ID = " . (int) $ID));
+	//	$arr = mysqli_fetch_array(mysqli_query("SELECT * FROM my_customer_table WHERE ID = " . (int) $ID));
 	//	// build the qbXML CustomerAddRq here
 	//	return $qbxml;
 	// 
@@ -380,7 +380,7 @@ function _quickbooks_customer_add_request($requestID, $user, $action, $ID, $extr
 	
 	/*
 	// Fetch your customer record from your database
-	$record = mysql_fetch_array(mysql_query("SELECT * FROM your_customer_table WHERE your_customer_ID_field = " . (int) $ID));
+	$record = mysqli_fetch_array(mysqli_query("SELECT * FROM your_customer_table WHERE your_customer_ID_field = " . (int) $ID));
 	
 	// Create and return a qbXML request
 	$qbxml = '<?xml version="1.0" encoding="utf-8"?>
@@ -460,7 +460,7 @@ function _quickbooks_customer_add_response($requestID, $user, $action, $ID, $ext
 	//	the customer. 
 	
 	/*
-	mysql_query("UPDATE your_customer_table SET quickbooks_listid = '" . mysql_escape_string($idents['ListID']) . "' WHERE your_customer_ID_field = " . (int) $ID);
+	mysqli_query("UPDATE your_customer_table SET quickbooks_listid = '" . mysqli_escape_string($idents['ListID']) . "' WHERE your_customer_ID_field = " . (int) $ID);
 	*/
 }
 

@@ -403,7 +403,7 @@ class QuickBooks_Driver_Sql_Sqlite3 extends QuickBooks_Driver_Sql
      */
     public function affected()
     {
-        //return mysql_affected_rows($this->_conn);
+        //return mysqli_affected_rows($this->_conn);
         return 0;
     }
 
@@ -414,7 +414,7 @@ class QuickBooks_Driver_Sql_Sqlite3 extends QuickBooks_Driver_Sql
      */
     public function last()
     {
-        //return mysql_insert_id($this->_conn);
+        //return mysqli_insert_id($this->_conn);
         return $this->_conn->lastInsertRowID();
         //return sqlite_last_insert_rowid($this->_conn);
     }
@@ -471,7 +471,7 @@ class QuickBooks_Driver_Sql_Sqlite3 extends QuickBooks_Driver_Sql
      */
     protected function _escape($str)
     {
-        //return mysql_real_escape_string($str, $this->_conn);
+        //return mysqli_real_escape_string($str, $this->_conn);
         return SQLite3::escapeString($str);
     }
 
@@ -483,7 +483,7 @@ class QuickBooks_Driver_Sql_Sqlite3 extends QuickBooks_Driver_Sql
      */
     protected function _count($res)
     {
-        //return mysql_num_rows($res);
+        //return mysqli_num_rows($res);
         return sqlite_num_rows($res);
     }
 

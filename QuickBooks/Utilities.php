@@ -1438,9 +1438,9 @@ class QuickBooks_Utilities
 			
 		$mysqlTime = explode(":", $tempTime[1]);
 			
-		$mysql_t = mktime($mysqlTime[0], $mysqlTime[1], $mysqlTime[2]);
+		$mysqli_t = mktime($mysqlTime[0], $mysqlTime[1], $mysqlTime[2]);
 			
-		$newMysqlTime = $mysql_t - $timezoneDiff;
+		$newMysqlTime = $mysqli_t - $timezoneDiff;
 			
 		//mail("grgisme@gmail.com","TimeZone Diff","TimeZone Diff: ".($timezoneDiff));
 			
@@ -1468,14 +1468,14 @@ class QuickBooks_Utilities
 		$mysqlTime = explode(":", $tempTime[1]);
 		$tempTime = explode("-", $tempTime[0]);
 			
-		$mysql_t = mktime($mysqlTime[0], $mysqlTime[1], $mysqlTime[2], $tempTime[1], $tempTime[2], $tempTime[0], 0);
+		$mysqli_t = mktime($mysqlTime[0], $mysqlTime[1], $mysqlTime[2], $tempTime[1], $tempTime[2], $tempTime[0], 0);
 		$QBTime = strtotime($QBTime);
 			
-		//mail("grgisme@gmail.com","QBTime","QBTime: ".($QBTime)."\n\n\nSQLTime: ".$mysql_t."\n\n\n".$SQLTime."\n\n\nDaylight Savings?: ".date('I'));
+		//mail("grgisme@gmail.com","QBTime","QBTime: ".($QBTime)."\n\n\nSQLTime: ".$mysqli_t."\n\n\n".$SQLTime."\n\n\nDaylight Savings?: ".date('I'));
 			
-		if ($QBTime < $mysql_t)
+		if ($QBTime < $mysqli_t)
 			return -1;
-		elseif($QBTime > $mysql_t)
+		elseif($QBTime > $mysqli_t)
 			return 1;
 		else
 			return 0;

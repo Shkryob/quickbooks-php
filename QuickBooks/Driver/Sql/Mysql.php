@@ -286,23 +286,23 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	{
 		if ($port)
 		{
-			$this->_conn = mysql_connect($host . ':' . $port, $user, $pass, $new_link, $client_flags) or die('host: ' . $host . ', user: ' . $user . ', pass: XXXX, mysql_error(): ' . mysql_error());
+			$this->_conn = mysqli_connect($host . ':' . $port, $user, $pass, $new_link, $client_flags) or die('host: ' . $host . ', user: ' . $user . ', pass: XXXX, mysqli_error(): ' . mysqli_error());
 		}
 		else
 		{
-			$this->_conn = mysql_connect($host, $user, $pass, $new_link, $client_flags) or die('host: ' . $host . ', user: ' . $user . ', pass: XXXX, mysql_error(): ' . mysql_error());
+			$this->_conn = mysqli_connect($host, $user, $pass, $new_link, $client_flags) or die('host: ' . $host . ', user: ' . $user . ', pass: XXXX, mysqli_error(): ' . mysqli_error());
 		}
 			
 		// Select the correct database
-		$tmp = mysql_select_db($db, $this->_conn) or die(mysql_error());
+		$tmp = mysqli_select_db($db, $this->_conn) or die(mysqli_error());
 		
 		// Support UTF-8 chars
-		mysql_query("SET NAMES 'utf8'", $this->_conn);
+		mysqli_query("SET NAMES 'utf8'", $this->_conn);
 		
 		/*
 		static $connections = array();
 		$connections[] = $user . ':' . $pass . '@' . $host . ':' . $port . '/' . $db;
-		mysql_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'MySQL connection #" . count($connections) . ", " . print_r($connections, true) . "', NOW() )", $this->_conn) or die(mysql_error());
+		mysqli_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'MySQL connection #" . count($connections) . ", " . print_r($connections, true) . "', NOW() )", $this->_conn) or die(mysqli_error());
 		*/
 		
 		return $tmp;
@@ -316,7 +316,7 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	 */
 	protected function _fetch($res)
 	{
-		return mysql_fetch_assoc($res);
+		return mysqli_fetch_assoc($res);
 	}
 	
 	/**
@@ -344,8 +344,8 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 		}
 		
 		//print($sql . "\n\n");
-		$res = mysql_query($sql, $this->_conn);
-		//mysql_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( '" . mysql_real_escape_string($sql) . "', NOW() ) ");
+		$res = mysqli_query($sql, $this->_conn);
+		//mysqli_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( '" . mysqli_real_escape_string($sql) . "', NOW() ) ");
 		
 		/*
 		CREATE TABLE quickbooks_debug (
@@ -358,7 +358,7 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 		
 		// Debugging... 
 		/*
-		mysql_query("
+		mysqli_query("
 			INSERT INTO
 				quickbooks_debug
 			(
@@ -374,8 +374,8 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 		
 		if (!$res)
 		{
-			$errnum = mysql_errno($this->_conn);
-			$errmsg = mysql_error($this->_conn);
+			$errnum = mysqli_errno($this->_conn);
+			$errmsg = mysqli_error($this->_conn);
 			
 			//print($sql);
 			
@@ -428,7 +428,7 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	 */
 	public function affected()
 	{
-		return mysql_affected_rows($this->_conn);
+		return mysqli_affected_rows($this->_conn);
 	}
 	
 	/**
@@ -438,7 +438,7 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	 */
 	public function last()
 	{
-		return mysql_insert_id($this->_conn);
+		return mysqli_insert_id($this->_conn);
 	}
 	
 	/**
@@ -482,9 +482,9 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	 */
 	public function rewind($res)
 	{
-		if (mysql_num_rows($res) > 0)
+		if (mysqli_num_rows($res) > 0)
 		{
-			return mysql_data_seek($res, 0);
+			return mysqli_data_seek($res, 0);
 		}
 		
 		return true;
@@ -498,7 +498,7 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	 */
 	protected function _escape($str)
 	{
-		return mysql_real_escape_string($str, $this->_conn);
+		return mysqli_real_escape_string($str, $this->_conn);
 	}
 	
 	/**
@@ -509,7 +509,7 @@ class QuickBooks_Driver_Sql_Mysql extends QuickBooks_Driver_Sql
 	 */
 	protected function _count($res)
 	{
-		return mysql_num_rows($res);
+		return mysqli_num_rows($res);
 	}
 	
 	/**

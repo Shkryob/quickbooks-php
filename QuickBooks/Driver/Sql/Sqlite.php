@@ -351,8 +351,8 @@ class QuickBooks_Driver_Sql_Sqlite extends QuickBooks_Driver_Sql
 
         if (!$res)
         {
-            //$errnum = mysql_errno($this->_conn);
-            //$errmsg = mysql_error($this->_conn);
+            //$errnum = mysqli_errno($this->_conn);
+            //$errmsg = mysqli_error($this->_conn);
             $errnum = -99;
             $errmsg = 'SQLLite Query Error';
 
@@ -407,7 +407,7 @@ class QuickBooks_Driver_Sql_Sqlite extends QuickBooks_Driver_Sql
      */
     public function affected()
     {
-        //return mysql_affected_rows($this->_conn);
+        //return mysqli_affected_rows($this->_conn);
         return 0;
     }
 
@@ -418,7 +418,7 @@ class QuickBooks_Driver_Sql_Sqlite extends QuickBooks_Driver_Sql
      */
     public function last()
     {
-        //return mysql_insert_id($this->_conn);
+        //return mysqli_insert_id($this->_conn);
         return sqlite_last_insert_rowid($this->_conn);
     }
 
@@ -474,7 +474,7 @@ class QuickBooks_Driver_Sql_Sqlite extends QuickBooks_Driver_Sql
      */
     protected function _escape($str)
     {
-        //return mysql_real_escape_string($str, $this->_conn);
+        //return mysqli_real_escape_string($str, $this->_conn);
         return sqlite_escape_string($str);
     }
 
@@ -486,7 +486,7 @@ class QuickBooks_Driver_Sql_Sqlite extends QuickBooks_Driver_Sql
      */
     protected function _count($res)
     {
-        //return mysql_num_rows($res);
+        //return mysqli_num_rows($res);
         return sqlite_num_rows($res);
     }
 

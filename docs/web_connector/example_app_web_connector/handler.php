@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . '/config.php';
 if (isset($_POST['submitted']))
 {
 	// Save the record
-	mysql_query("
+	mysqli_query("
 		INSERT INTO
 			my_customer_table
 		(
@@ -29,13 +29,13 @@ if (isset($_POST['submitted']))
 			fname, 
 			lname
 		) VALUES (
-			'" . mysql_escape_string($_POST['name']) . "', 
-			'" . mysql_escape_string($_POST['fname']) . "', 
-			'" . mysql_escape_string($_POST['lname']) . "'
+			'" . mysqli_escape_string($_POST['name']) . "', 
+			'" . mysqli_escape_string($_POST['fname']) . "', 
+			'" . mysqli_escape_string($_POST['lname']) . "'
 		)");
 		
 	// Get the primary key of the new record
-	$id = mysql_insert_id();
+	$id = mysqli_insert_id();
 	
 	// Queue up the customer add 
 	$Queue = new QuickBooks_WebConnector_Queue($dsn);

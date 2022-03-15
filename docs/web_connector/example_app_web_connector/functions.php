@@ -18,7 +18,7 @@
 function _quickbooks_customer_add_request($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $version, $locale)
 {
 	// Grab the data from our MySQL database
-	$arr = mysql_fetch_assoc(mysql_query("SELECT * FROM my_customer_table WHERE id = " . (int) $ID));
+	$arr = mysqli_fetch_assoc(mysqli_query("SELECT * FROM my_customer_table WHERE id = " . (int) $ID));
 	
 	$xml = '<?xml version="1.0" encoding="utf-8"?>
 		<?qbxml version="2.0"?>
@@ -43,12 +43,12 @@ function _quickbooks_customer_add_request($requestID, $user, $action, $ID, $extr
  */
 function _quickbooks_customer_add_response($requestID, $user, $action, $ID, $extra, &$err, $last_action_time, $last_actionident_time, $xml, $idents)
 {	
-	mysql_query("
+	mysqli_query("
 		UPDATE 
 			my_customer_table 
 		SET 
-			quickbooks_listid = '" . mysql_real_escape_string($idents['ListID']) . "', 
-			quickbooks_editsequence = '" . mysql_real_escape_string($idents['EditSequence']) . "'
+			quickbooks_listid = '" . mysqli_real_escape_string($idents['ListID']) . "', 
+			quickbooks_editsequence = '" . mysqli_real_escape_string($idents['EditSequence']) . "'
 		WHERE 
 			id = " . (int) $ID);
 }
@@ -58,12 +58,12 @@ function _quickbooks_customer_add_response($requestID, $user, $action, $ID, $ext
  */
 function _quickbooks_error_catchall($requestID, $user, $action, $ID, $extra, &$err, $xml, $errnum, $errmsg)
 {
-	mysql_query("
+	mysqli_query("
 		UPDATE 
 			my_customer_table 
 		SET 
-			quickbooks_errnum = '" . mysql_real_escape_string($errnum) . "', 
-			quickbooks_errmsg = '" . mysql_real_escape_string($errmsg) . "'
+			quickbooks_errnum = '" . mysqli_real_escape_string($errnum) . "', 
+			quickbooks_errmsg = '" . mysqli_real_escape_string($errmsg) . "'
 		WHERE 
 			id = " . (int) $ID);
 }

@@ -102,7 +102,7 @@ class QuickBooks_Driver_Factory
 				static $static = 0;
 				$static++;
 				print('Constructed new instance ' . $static . ' [' . $key . ']' . "\n");
-				mysql_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'Here is my " . $static . " key: " . $key . "', NOW() )");
+				mysqli_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'Here is my " . $static . " key: " . $key . "', NOW() )");
 				//print_r($hooks);
 				*/
 				

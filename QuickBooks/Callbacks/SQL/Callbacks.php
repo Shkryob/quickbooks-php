@@ -696,7 +696,7 @@ class QuickBooks_Callbacks_SQL_Callbacks
 		
 		$col_defs = array();
 		
-		//mysql_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'TESTING', NOW() ) ") or die(mysql_error());
+		//mysqli_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'TESTING', NOW() ) ") or die(mysqli_error());
 		
 		// First, find the column definitions
 		$tmp = $xml;
@@ -774,7 +774,7 @@ class QuickBooks_Callbacks_SQL_Callbacks
 			$Driver->log('Inventory for "' . $item['FullName'] . '": ' . print_r($item, true), null, QUICKBOOKS_LOG_DEBUG);
 			//$errnum = null;
 			//$errmsg = null;
-			//mysql_query("INSERT INTO quickbooks_log VALUES ( msg, log_datetime) VALUES ( '" . mysql_real_escape_string(print_r($item, true)) . "', NOW() ) ");
+			//mysqli_query("INSERT INTO quickbooks_log VALUES ( msg, log_datetime) VALUES ( '" . mysqli_real_escape_string(print_r($item, true)) . "', NOW() ) ");
 			// UPDATE item SET QuantityOnHand = x WHERE FullName = y, resync = NOW() AND qbsql_resync_datetime = qbsql_modify_timestamp
 			// if (!affected_rows)
 			// 	UPDATE item SET QuantityOnHand = x WHERE FullName = y 		// this was a modified item, so it needs to stay modified
@@ -879,7 +879,7 @@ public static function InventoryAssemblyLevelsRequest($requestID, $user, $action
 		
 		$col_defs = array();
 		
-		//mysql_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'TESTING', NOW() ) ") or die(mysql_error());
+		//mysqli_query("INSERT INTO quickbooks_log ( msg, log_datetime ) VALUES ( 'TESTING', NOW() ) ") or die(mysqli_error());
 		
 		// First, find the column definitions
 		$tmp = $xml;
@@ -957,7 +957,7 @@ public static function InventoryAssemblyLevelsRequest($requestID, $user, $action
 			$Driver->log('Inventory Assembly for "' . $item['FullName'] . '": ' . print_r($item, true), null, QUICKBOOKS_LOG_DEBUG);
 			//$errnum = null;
 			//$errmsg = null;
-			//mysql_query("INSERT INTO quickbooks_log VALUES ( msg, log_datetime) VALUES ( '" . mysql_real_escape_string(print_r($item, true)) . "', NOW() ) ");
+			//mysqli_query("INSERT INTO quickbooks_log VALUES ( msg, log_datetime) VALUES ( '" . mysqli_real_escape_string(print_r($item, true)) . "', NOW() ) ");
 			// UPDATE item SET QuantityOnHand = x WHERE FullName = y, resync = NOW() AND qbsql_resync_datetime = qbsql_modify_timestamp
 			// if (!affected_rows)
 			// 	UPDATE item SET QuantityOnHand = x WHERE FullName = y 		// this was a modified item, so it needs to stay modified
@@ -1512,7 +1512,7 @@ public static function InventoryAssemblyLevelsRequest($requestID, $user, $action
 			//Check the delete mode and if desired, just flag them rather than remove the rows.
 			// @todo Fix this wrong delete flag field
 			
-			//mysql_query("UPDATE qb_bill SET qbsql_to_delete = 0, qbsql_flag_deleted = 1 WHERE TxnID = '" . $Node->getChildDataAt('TxnDelRs TxnID') . "' LIMIT 1");
+			//mysqli_query("UPDATE qb_bill SET qbsql_to_delete = 0, qbsql_flag_deleted = 1 WHERE TxnID = '" . $Node->getChildDataAt('TxnDelRs TxnID') . "' LIMIT 1");
 			
 			/*
 			if (isset($config['delete']) and
@@ -1716,7 +1716,7 @@ public static function InventoryAssemblyLevelsRequest($requestID, $user, $action
 							);
 						
 						$Driver->log('Updating DERIVED ' . $xpath . ' fields: ' . print_r($arr, true) . ' where qbsql_id = ' . $ID, null, QUICKBOOKS_LOG_VERBOSE);
-						//mysql_query("INSERT INTO quickbooks_log ( msg ) VALUES ( '" . mysql_real_escape_string('Updating DERIVED ' . $xpath . ' fields: ' . print_r($arr, true) . ' where qbsql_id = ' . $ID) . "' ) ");
+						//mysqli_query("INSERT INTO quickbooks_log ( msg ) VALUES ( '" . mysqli_real_escape_string('Updating DERIVED ' . $xpath . ' fields: ' . print_r($arr, true) . ' where qbsql_id = ' . $ID) . "' ) ");
 						
 						$Driver->update(QUICKBOOKS_DRIVER_SQL_PREFIX_SQL . $table, 
 							$arr, 

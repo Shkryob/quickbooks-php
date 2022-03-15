@@ -42,7 +42,7 @@ if (!QuickBooks_Utilities::initialized($dsn))
 	QuickBooks_Utilities::createUser($dsn, $qbwc_user, $qbwc_pass);
 	
 	// Create our test table
-	mysql_query("CREATE TABLE my_customer_table (
+	mysqli_query("CREATE TABLE my_customer_table (
 	  id int(10) unsigned NOT NULL AUTO_INCREMENT,
 	  name varchar(64) NOT NULL,
 	  fname varchar(64) NOT NULL,

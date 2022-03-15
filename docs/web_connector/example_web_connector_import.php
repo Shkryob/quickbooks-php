@@ -180,7 +180,7 @@ if (!QuickBooks_Utilities::initialized($dsn))
 				continue;
 			}
 			
-			mysql_query($sql) or die(trigger_error(mysql_error()));
+			mysqli_query($sql) or die(trigger_error(mysqli_error()));
 		}
 	}
 	else
@@ -411,21 +411,21 @@ function _quickbooks_invoice_import_response($requestID, $user, $action, $ID, $e
 			
 			foreach ($arr as $key => $value)
 			{
-				$arr[$key] = mysql_real_escape_string($value);
+				$arr[$key] = mysqli_real_escape_string($value);
 			}
 			
 			// Store the invoices in MySQL
-			mysql_query("
+			mysqli_query("
 				REPLACE INTO
 					qb_example_invoice
 				(
 					" . implode(", ", array_keys($arr)) . "
 				) VALUES (
 					'" . implode("', '", array_values($arr)) . "'
-				)") or die(trigger_error(mysql_error()));
+				)") or die(trigger_error(mysqli_error()));
 			
 			// Remove any old line items
-			mysql_query("DELETE FROM qb_example_invoice_lineitem WHERE TxnID = '" . mysql_real_escape_string($arr['TxnID']) . "' ") or die(trigger_error(mysql_error()));
+			mysqli_query("DELETE FROM qb_example_invoice_lineitem WHERE TxnID = '" . mysqli_real_escape_string($arr['TxnID']) . "' ") or die(trigger_error(mysqli_error()));
 			
 			// Process the line items
 			foreach ($Invoice->children() as $Child)
@@ -446,18 +446,18 @@ function _quickbooks_invoice_import_response($requestID, $user, $action, $ID, $e
 					
 					foreach ($lineitem as $key => $value)
 					{
-						$lineitem[$key] = mysql_real_escape_string($value);
+						$lineitem[$key] = mysqli_real_escape_string($value);
 					}
 					
 					// Store the lineitems in MySQL
-					mysql_query("
+					mysqli_query("
 						INSERT INTO
 							qb_example_invoice_lineitem
 						(
 							" . implode(", ", array_keys($lineitem)) . "
 						) VALUES (
 							'" . implode("', '", array_values($lineitem)) . "'
-						) ") or die(trigger_error(mysql_error()));
+						) ") or die(trigger_error(mysqli_error()));
 				}
 			}
 		}
@@ -561,18 +561,18 @@ function _quickbooks_customer_import_response($requestID, $user, $action, $ID, $
 			
 			foreach ($arr as $key => $value)
 			{
-				$arr[$key] = mysql_real_escape_string($value);
+				$arr[$key] = mysqli_real_escape_string($value);
 			}
 			
 			// Store the invoices in MySQL
-			mysql_query("
+			mysqli_query("
 				REPLACE INTO
 					qb_example_customer
 				(
 					" . implode(", ", array_keys($arr)) . "
 				) VALUES (
 					'" . implode("', '", array_values($arr)) . "'
-				)") or die(trigger_error(mysql_error()));
+				)") or die(trigger_error(mysqli_error()));
 		}
 	}
 	
@@ -675,21 +675,21 @@ function _quickbooks_salesorder_import_response($requestID, $user, $action, $ID,
 			
 			foreach ($arr as $key => $value)
 			{
-				$arr[$key] = mysql_real_escape_string($value);
+				$arr[$key] = mysqli_real_escape_string($value);
 			}
 			
 			// Store the invoices in MySQL
-			mysql_query("
+			mysqli_query("
 				REPLACE INTO
 					qb_example_salesorder
 				(
 					" . implode(", ", array_keys($arr)) . "
 				) VALUES (
 					'" . implode("', '", array_values($arr)) . "'
-				)") or die(trigger_error(mysql_error()));
+				)") or die(trigger_error(mysqli_error()));
 			
 			// Remove any old line items
-			mysql_query("DELETE FROM qb_example_salesorder_lineitem WHERE TxnID = '" . mysql_real_escape_string($arr['TxnID']) . "' ") or die(trigger_error(mysql_error()));
+			mysqli_query("DELETE FROM qb_example_salesorder_lineitem WHERE TxnID = '" . mysqli_real_escape_string($arr['TxnID']) . "' ") or die(trigger_error(mysqli_error()));
 			
 			// Process the line items
 			foreach ($SalesOrder->children() as $Child)
@@ -710,18 +710,18 @@ function _quickbooks_salesorder_import_response($requestID, $user, $action, $ID,
 					
 					foreach ($lineitem as $key => $value)
 					{
-						$lineitem[$key] = mysql_real_escape_string($value);
+						$lineitem[$key] = mysqli_real_escape_string($value);
 					}
 					
 					// Store the lineitems in MySQL
-					mysql_query("
+					mysqli_query("
 						INSERT INTO
 							qb_example_salesorder_lineitem
 						(
 							" . implode(", ", array_keys($lineitem)) . "
 						) VALUES (
 							'" . implode("', '", array_values($lineitem)) . "'
-						) ") or die(trigger_error(mysql_error()));
+						) ") or die(trigger_error(mysqli_error()));
 				}
 			}
 		}
@@ -846,21 +846,21 @@ function _quickbooks_item_import_response($requestID, $user, $action, $ID, $extr
 			
 			foreach ($arr as $key => $value)
 			{
-				$arr[$key] = mysql_real_escape_string($value);
+				$arr[$key] = mysqli_real_escape_string($value);
 			}
 			
 			//print_r(array_keys($arr));
 			//trigger_error(print_r(array_keys($arr), true));
 			
 			// Store the customers in MySQL
-			mysql_query("
+			mysqli_query("
 				REPLACE INTO
 					qb_example_item
 				(
 					" . implode(", ", array_keys($arr)) . "
 				) VALUES (
 					'" . implode("', '", array_values($arr)) . "'
-				)") or die(trigger_error(mysql_error()));
+				)") or die(trigger_error(mysqli_error()));
 		}
 	}
 	
@@ -957,7 +957,7 @@ function _quickbooks_purchaseorder_import_response($requestID, $user, $action, $
 			
 			foreach ($arr as $key => $value)
 			{
-				$arr[$key] = mysql_real_escape_string($value);
+				$arr[$key] = mysqli_real_escape_string($value);
 			}
 			
 			// Process all child elements of the Purchase Order

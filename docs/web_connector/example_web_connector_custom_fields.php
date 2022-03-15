@@ -229,7 +229,7 @@ function _quickbooks_customer_import_response($requestID, $user, $action, $ID, $
 			}
 			
 			// Do something with that data... 
-			// mysql_query("INSERT INTO ... ");		  
+			// mysqli_query("INSERT INTO ... ");		  
 		}
 	}
 	

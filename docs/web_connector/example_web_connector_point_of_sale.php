@@ -153,7 +153,7 @@ function _quickbooks_pos_customer_add_response($requestID, $user, $action, $ID, 
 	//	the customer. 
 	
 	/*
-	mysql_query("UPDATE your_customer_table SET quickbooks_listid = '" . mysql_escape_string($idents['ListID']) . "' WHERE your_customer_ID_field = " . (int) $ID);
+	mysqli_query("UPDATE your_customer_table SET quickbooks_listid = '" . mysqli_escape_string($idents['ListID']) . "' WHERE your_customer_ID_field = " . (int) $ID);
 	*/
 }
 
